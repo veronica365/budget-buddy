@@ -36,6 +36,7 @@
     "ignoreFiles": [
         "build/**",
         "dist/**",
+        "public/assets/**",
         "**/reset*.css",
         "**/bootstrap*.css"
     ]
