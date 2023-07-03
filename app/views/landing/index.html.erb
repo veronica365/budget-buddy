@@ -3,7 +3,7 @@
         <h1> Budget Buddy</h1>
     </div>
     <div class="d-flex align-items-center flex-column justify-content-center px-4">
-        <button class="btn btn-primary btn-block shadow-none">LOG IN </button>
-        <button class="btn btn-block shadow-none"> SIGN UP</button>
+        <%= link_to "LOGIN", new_user_session_path, class: 'btn btn-primary btn-block shadow-none' %>
+        <%= link_to "SIGN UP", new_user_registration_path, class: 'btn btn-block shadow-none' %>
     </div>
 </div>
