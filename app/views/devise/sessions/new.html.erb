@@ -1,26 +1,12 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class='d-flex flex-column align-items-center'>
+  <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name), skip_label: :true,  html: { method: :post, class: 'd-flex flex-column w-100'}) do |f| %>
+    <div class="d-flex align-items-center justify-content-between bg-primary px-3 py-2 text-white">
+      <div><i class="fa fa-arrow-left" aria-hidden="true"></i></div><h4>Login</h4><div><%= f.submit "Log in", class: 'btn text-right px-0 text-white' %></div>
     </div>
+    <%= render 'devise/shared/error_messages', resource: resource %>
+
+    <%= f.email_field :email, autofocus: true, autocomplete: 'email', placeholder: 'Email', skip_label: true, class: 'mt-2 border-right-0 border-top-0 border-left-0 border-bottom shadow-none' %>
+    <%= f.password_field :password, autocomplete: 'new-password', placeholder: 'Password', skip_label: true, class: 'border-right-0 border-top-0 border-left-0 border-bottom shadow-none' %>
   <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+  <%= render 'devise/shared/links' %>
+</div>
