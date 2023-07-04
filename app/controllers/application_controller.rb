@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   skip_before_action :authenticate_user!, if: :landing_page!
   skip_before_action :verify_authenticity_token, if: :landing_page!
+  before_action :update_allowed_parameters, if: :devise_controller?
 
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found!
 
@@ -12,5 +13,11 @@ class ApplicationController < ActionController::Base
 
   def landing_page!
     request.fullpath.to_s.include?('landing')
+  end
+
+  protected
+
+  def update_allowed_parameters
+    devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:name, :email, :password) }
   end
 end
