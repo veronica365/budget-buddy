@@ -1,0 +1,13 @@
+<div class='d-flex flex-column align-items-center'>
+  <%= form_with(model: @category, url: new_category_path, skip_label: :true,  html: { method: :post, class: 'd-flex flex-column w-100'}) do |f| %>
+    <div class="d-flex align-items-center justify-content-between bg-primary px-3 py-2 text-white">
+      <div><%= link_to categories_path, class: "text-white" do %> <i class="fa fa-arrow-left" aria-hidden="true"> <% end %></i></div><h4>New Category</h4><div><%= f.submit "Next", class: 'btn text-right px-0 text-white' %></div>
+    </div>
+
+    <%= f.text_field :name, autofocus: true, autocomplete: 'new-category', placeholder: 'Category name', skip_label: true, class: 'mt-2 border-right-0 border-top-0 border-left-0 border-bottom form-control shadow-none' %>
+    <%= f.url_field :name, autofocus: true, autocomplete: 'new-icon-url', placeholder: 'Icon url', skip_label: true, class: 'mt-2 border-right-0 border-top-0 border-left-0 border-bottom form-control shadow-none' %>
+    <%= link_to "https://icons8.com/icons/set/money", class:"ml-2", target: :_blank do %>
+      <small>Discover icon url</small>
+    <% end %>
+  <% end %>
+</div>

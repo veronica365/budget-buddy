@@ -13,9 +13,9 @@
  *= require_tree .
  *= require_self
  */
-body {
-  width: 100vw;
-  height: 92vh;
+img {
+  width: 100%;
+  height: auto;
 }
 
 .landing {
@@ -28,4 +28,10 @@ body {
 
 .landing div:last-child {
   height: 20vh;
+}
+
+.icon-wrapper{
+  max-width: 50px;
+  overflow: hidden;
+  border-radius: 50%;
 }

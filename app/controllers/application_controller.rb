@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
     render 'shared/_404'
   end
 
+  def not_found_method
+    render file: Rails.public_path.join('404.html'), status: :not_found, layout: false
+  end
+
   def landing_page!
     request.fullpath.to_s.include?('landing')
   end

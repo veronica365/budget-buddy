@@ -16,11 +16,23 @@
 
   <body>
     <% unless notice.nil? %>
-      <p class="notice alert alert-info" role="alert"><%= notice %></p>
+      <div class="notice alert alert-info alert-dismissible fade show mb-0" role="alert">
+        <%= notice %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
     <% end %>
     <% unless alert.nil? %>
-      <p class="alert alert-danger" role="alert"><%= alert %></p>
+      <div class="alert alert alert-danger alert-dismissible fade show mb-0" role="alert">
+        <%= alert %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
     <% end %>
-    <%= yield %>
+    <div class="container-fluid px-3">
+      <%= yield %>
+    </div>
   </body>
 </html>
