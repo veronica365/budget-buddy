@@ -1,13 +1,27 @@
-<div class="d-flex my-3 w-100 flex-column">
-    <%= link_to "New Category", new_category_path, class:"ml-auto btn btn-primary" %>
-</div>
-<div>
-    <ul class="list-group">
-        <li class="list-group-item d-flex align-items-center">
-            <div class="icon-wrapper">
-                <img src="https://img.icons8.com/?size=512&id=61699&format=png" alt="money" />
-            </div>
-            <span>Test category</span>
-        </li>
-    </ul>
+<div class="mx-n3">
+    <div class="d-flex text-center bg-primary px-3 py-2 text-white">
+        <%= link_to "", new_category_path, class:"ml-auto btn btn-primary" %>
+        <h4 class="w-100">Categories</h4>
+        <%= link_to "Add", new_category_path, class:"d-flex align-items-center ml-auto text-white" %>
+    </div>
+    <% if @categories.length.zero? %>
+        <div class="text-center py-3">There are no current categories</div>
+    <% end %>
+    <% unless @categories.nil? %>
+        <div class="px-3 my-3">
+            <ul class="list-group">
+                <% @categories.each do |cat| %>
+                    <li class="list-group-item d-flex align-items-center">
+                        <div class="icon-wrapper">
+                            <img src="<%= cat.icon %>" alt="money" />
+                        </div>
+                        <span class="mr-auto"><%= cat.name %></span>
+                        <%= button_to category_path(id: cat.id), method: :delete, class:"btn" do %>
+                            <span><i class="fa fa-trash"></i>
+                        <% end %>
+                    </li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
 </div>
