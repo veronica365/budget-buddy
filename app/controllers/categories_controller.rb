@@ -44,14 +44,12 @@ class CategoriesController < ApplicationController
   private
 
   def category_params
-    puts params
-    puts params.inspect
     params.require(:category).permit(:name, :icon)
   end
 
   private
 
   def find_category
-    @category = Category.includes(:transactions).find(params[:id])
+    @category = Category.includes(:transactions).find(@category_id)
   end
 end
