@@ -40,10 +40,11 @@ class TransactionsController < ApplicationController
   end
 
   def find_category
-    @category = Category.find_by_sql("SELECT DISTINCT categories.id, categories.name, categories.icon,
-        categories.created_at, SUM(transactions.amount) AS amount FROM \"categories\"
+    @category = Category.find_by_sql("SELECT DISTINCT categories.id, users.id as user_id, categories.name
+        , categories.icon, categories.created_at, SUM(transactions.amount) AS amount FROM \"categories\"
         LEFT JOIN transactions ON transactions.category_id = categories.id
-        WHERE \"categories\".\"id\" = #{@category_id} GROUP BY categories.id, categories.name").first
+        LEFT JOIN users ON users.id = categories.user_id
+        WHERE \"categories\".\"id\" = #{@category_id} GROUP BY categories.id, categories.name, users.id").first
   end
 
   def find_transaction

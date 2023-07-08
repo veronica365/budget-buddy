@@ -21,9 +21,10 @@ class CategoriesController < ApplicationController
 
   def index
     @categories = Category.find_by_sql("SELECT DISTINCT categories.id, categories.name, categories.icon,
-    categories.created_at, SUM(transactions.amount) AS amount FROM \"categories\"
+    categories.created_at, SUM(transactions.amount) AS amount, users.id as user_id FROM \"categories\"
     LEFT JOIN transactions ON transactions.category_id = categories.id
-    WHERE \"categories\".\"user_id\" = #{current_user.id} GROUP BY categories.id, categories.name")
+    LEFT JOIN users ON users.id = categories.user_id
+    WHERE \"categories\".\"user_id\" = #{current_user.id} GROUP BY categories.id, categories.name, users.id")
   end
 
   def destroy
