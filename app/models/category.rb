@@ -1,6 +1,6 @@
 class Category < ApplicationRecord
-    belongs_to :user
-    has_many :transactions
+  belongs_to :user
+  has_many :transactions, dependent: :destroy
 
-    validates :name, presence: true, length: { maximum: 250 }
+  validates :name, :icon, presence: true, length: { maximum: 250 }
 end
