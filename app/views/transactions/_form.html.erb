@@ -15,5 +15,6 @@
   <% end %>
   <%= f.text_field :name, autofocus: true, autocomplete: 'new-transaction', placeholder: 'Ex: Electricity', skip_label: true, class: 'mt-2 border-right-0 border-top-0 border-left-0 border-bottom form-control shadow-none' %>
   <%= f.number_field :amount, autofocus: true, autocomplete: 'new-icon-url', placeholder: 'Ex: 250', skip_label: true, class: 'mt-2 border-right-0 border-top-0 border-left-0 border-bottom form-control shadow-none' %>
+  <%= f.select(:category_id, options_for_select(@categories.collect { |u| ["#{u.name}", u.id]}), {}, {class: "form-control"}) %>
   <%= f.submit "Submit", class: 'btn px-3 bg-success py-3 mt-auto position-fixed text-center text-white add-edit-button' %>
 <% end %>

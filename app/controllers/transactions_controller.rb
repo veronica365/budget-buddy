@@ -7,6 +7,7 @@ class TransactionsController < ApplicationController
 
   def new
     @transaction = Transaction.new
+    @categories = current_user.categories
   end
 
   def index
@@ -16,10 +17,10 @@ class TransactionsController < ApplicationController
 
   def create
     @transaction = Transaction.new(post_params)
-    @transaction.category_id = @category_id
 
     if @transaction.save
-      return redirect_to category_transactions_path(@category_id), notice: 'Transaction added successfully'
+      return redirect_to category_transactions_path(post_params['category_id']),
+                         notice: 'Transaction added successfully'
     end
 
     redirect_to new_category_transaction_path
@@ -36,7 +37,7 @@ class TransactionsController < ApplicationController
   end
 
   def post_params
-    params.require(:transaction).permit(:amount, :name)
+    params.require(:transaction).permit(:amount, :name, :category_id)
   end
 
   def find_category

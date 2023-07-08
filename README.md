@@ -1,6 +1,6 @@
-# Recipe App
+# Budget buddy
 
-In this project, you will start building a Recipe app that keeps track of all your recipes, ingredients, and inventory. It will allow you to save ingredients, keep track of what you have, create recipes, and generate a shopping list based on what you have and what you are missing from a recipe.
+Budget Buddy is about building a mobile web application where you can manage your budget: you have a list of transactions associated with a category, so that you can see how much money you spent and on what.
 
 # 📗 Table of Contents
 
@@ -29,7 +29,7 @@ In this project, you will start building a Recipe app that keeps track of all yo
 
 # 📖 budget-buddy <a name="about-project"></a>
 
-The Recipe app keeps track of all your recipes, ingredients, and inventory. It will allow you to save ingredients, keep track of what you have, create recipes, and generate a shopping list based on what you have and what you are missing from a recipe.
+Budget Buddy is about building a mobile web application where you can manage your budget: you have a list of transactions associated with a category, so that you can see how much money you spent and on what.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -47,7 +47,7 @@ The Recipe app keeps track of all your recipes, ingredients, and inventory. It w
 
 ## Project Description <a name="link-preview"></a>
 
-- [Project description](https://www.loom.com/share/d57b42eddeac46968bcc56fd83afce4f)
+- [Project description](https://www.loom.com/share/02231ae7b25e4802a69ded061033828c)
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
