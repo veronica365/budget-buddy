@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root "landing#index"
 
   devise_for :users, path: ''
-  resources :categories, only: [:index, :new, :show, :create, :edit, :destroy] do
+  resources :categories, except: [:show] do
     resources :transactions
   end
   match '*unmatched', to: 'application#not_found_method', via: :all

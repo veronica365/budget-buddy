@@ -1,12 +1,12 @@
 class CategoriesController < ApplicationController
-  before_action :find_category, only: [:show, :edit, :destroy]
+  before_action :find_category, only: [:edit, :update, :destroy]
 
   def new
     @category = Category.new
   end
 
   def create
-    @new_category = Category.new(post_params)
+    @new_category = Category.new(category_params)
     @new_category.user = current_user
     if @new_category.save
       redirect_to categories_path, notice: "Category has been created successfully"
@@ -16,26 +16,43 @@ class CategoriesController < ApplicationController
   end
 
   def index
-    @categories = Category.all.where(user_id: current_user.id)
+    @categories = Category.find_by_sql("SELECT DISTINCT categories.id, categories.name, categories.icon, categories.created_at, SUM(transactions.amount) AS amount
+    FROM \"categories\"
+    LEFT JOIN transactions ON transactions.category_id = categories.id
+    WHERE \"categories\".\"user_id\" = #{current_user.id}
+      GROUP BY categories.id, categories.name")
   end
 
   def destroy
     if @category.destroy
       redirect_to  categories_path, notice: "Category has been deleted successfully"
     else
-      redirect_to category_path(id: params[:id])
+      redirect_to categories_path
+    end
+  end
+
+  def edit; end
+
+  def update
+    if @category.update(category_params)
+      redirect_to category_url(@category), notice: 'Category was successfully updated.'
+    else
+        render :edit, status: :unprocessable_entity
     end
   end
 
   private
 
-  def post_params
+  def category_params
+    puts params
+    puts params.inspect
     params.require(:category).permit(:name, :icon)
   end
 
   private
 
   def find_category
-    @category = Category.find(params[:id])
+    @category = Category.includes(:transactions).find(params[:id])
+
   end
 end

@@ -15,6 +15,7 @@
   </head>
 
   <body>
+  <%= render "layouts/side_nav" %>
     <% unless notice.nil? %>
       <div class="notice alert alert-info alert-dismissible fade show mb-0" role="alert">
         <%= notice %>
@@ -31,8 +32,22 @@
         </button>
       </div>
     <% end %>
-    <div class="container-fluid px-3">
+    <div id="content-wrapper" class="container-fluid px-3">
       <%= yield %>
     </div>
+    <script>
+      function openNav() {
+        $(".sidenav").css({width: '250px'});
+        $("#mySidenav").css({width: '100%'});
+      }
+
+      function closeNav() {
+        $(".sidenav").css({width: '0'});
+        $("#mySidenav").css({width: '0'});
+      }
+    </script>
+    <% unless user_signed_in? %>
+      <script>$(document).ready(()=>{closeNav()})</script>
+    <% end %>
   </body>
 </html>
