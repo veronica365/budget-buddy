@@ -12,35 +12,7 @@
             <ul class="list-group">
                 <% @categories.each do |cat| %>
                     <li class="list-group-item px-3 mb-3 border-0">
-                        <div class="d-flex align-items-center">
-                            <%= link_to category_transactions_path category_id: cat.id do %>
-                                <div class="icon-wrapper">
-                                    <img src="<%= cat.icon %>" alt="money" />
-                                </div>
-                            <% end %>
-                            <div class="w-100 text-muted pl-2">
-                                <%= link_to category_transactions_path category_id: cat.id do %>
-                                    <div class="d-flex text-muted mt-0">
-                                        <span class="mb-0"><%= cat.name %></span>
-                                        <% unless cat.name.nil? %>
-                                            <span class="ml-auto text-dark"><b><%= cat.amount || '-' %></b></span>
-                                        <% end %>
-                                    </div>
-                                <% end %>
-                                <div>
-                                    <hr class="m-1 mx-n2" />
-                                    <div class="d-flex align-items-center mt-0 text-muted">
-                                        <small class="text-muted"><%= Date.parse(cat.created_at.to_s).strftime('%a, %b %Y') %></small>
-                                        <%= link_to edit_category_path(id: cat.id), class:"btn text-info" do %>
-                                            <span><i class="fa fa-edit"></i>
-                                        <% end %>
-                                        <%= button_to category_path(id: cat.id), method: :delete, class:"btn text-danger" do %>
-                                            <span><i class="fa fa-trash"></i>
-                                        <% end %>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <%= render 'shared/category/category_item', category: cat %>
                     </li>
                 <% end %>
             </ul>

@@ -1,6 +1,6 @@
 class Transaction < ApplicationRecord
-    belongs_to: :category
+    belongs_to :category
 
-    validates: :name, presense: true
-    validates: :amount, presense: true
+    validates :name, presence: true
+    validates :amount, presence: true
 end
