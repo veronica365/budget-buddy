@@ -1,0 +1,22 @@
+<%= form_with(model: category, class: 'd-flex flex-column w-100') do |f| %>
+  <div class="d-flex align-items-center justify-content-between bg-primary px-3 py-2 text-white">
+    <div><%= link_to backpath, class: "text-white" do %> <i class="fa fa-arrow-left" aria-hidden="true"> <% end %></i></div><h4>New Category</h4><div><%= f.submit "Next", class: 'btn text-right px-0 text-white' %></div>
+  </div>
+  <% if category.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+      <ul>
+        <% category.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.text_field :name, autofocus: true, autocomplete: 'new-category', placeholder: 'Ex: Utilities', skip_label: true, class: 'mt-2 border-right-0 border-top-0 border-left-0 border-bottom form-control shadow-none' %>
+  <%= f.url_field :icon, autofocus: true, autocomplete: 'new-icon-url', placeholder: 'EX: https://img.icons8.com/?size=512&id=61699&format=png', skip_label: true, class: 'mt-2 border-right-0 border-top-0 border-left-0 border-bottom form-control shadow-none' %>
+  <%= link_to "https://icons8.com/icons/set/money", class:"ml-2", target: :_blank do %>
+    <small>Discover icon url</small>
+  <% end %>
+  <%= f.submit "Submit", class: 'btn px-3 bg-success py-3 mt-auto position-fixed text-center text-white add-edit-button' %>
+<% end %>

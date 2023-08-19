@@ -1,0 +1,13 @@
+<div class='d-flex flex-column align-items-center mx-n3'>
+  <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), skip_label: :true,  html: { method: :post, class: 'd-flex flex-column w-100'}) do |f| %>
+    <div class="d-flex align-items-center justify-content-between bg-primary px-3 py-2 text-white">
+      <div><%= link_to new_user_session_path, class: "text-white" do %> <i class="fa fa-arrow-left" aria-hidden="true"> <% end %></i></div><h4>Register</h4><div><%= f.submit "Next", class: 'btn text-right px-0 text-white' %></div>
+    </div>
+    <%= render 'devise/shared/error_messages', resource: resource %>
+
+    <%= f.text_field :name, autofocus: true, autocomplete: 'new-email', placeholder: 'Full name', skip_label: true, class: 'mt-2 border-right-0 border-top-0 border-left-0 border-bottom shadow-none' %>
+    <%= f.email_field :email, autofocus: true, autocomplete: 'email', placeholder: 'Email', skip_label: true, class: 'border-right-0 border-top-0 border-left-0 border-bottom shadow-none' %>
+    <%= f.password_field :password, autocomplete: 'new-password', placeholder: 'Password', skip_label: true, class: 'border-right-0 border-top-0 border-left-0 border-bottom shadow-none' %>
+  <% end %>
+  <%= render 'devise/shared/links' %>
+</div>

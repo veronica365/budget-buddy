@@ -1,0 +1,31 @@
+<div class="d-flex align-items-center">
+    <%= link_to category_transactions_path category_id: category.id do %>
+        <div class="icon-wrapper">
+            <img src="<%= category.icon %>" alt="money" />
+        </div>
+    <% end %>
+    <div class="w-100 text-muted pl-2">
+        <%= link_to category_transactions_path category_id: category.id do %>
+            <div class="d-flex text-muted mt-0">
+                <span class="mb-0"><%= category.name %></span>
+                <% unless category.name.nil? %>
+                    <span class="ml-auto text-dark"><b><%= category.amount || '-' %></b></span>
+                <% end %>
+            </div>
+        <% end %>
+        <div>
+            <hr class="m-1 mx-n2" />
+            <div class="d-flex align-items-center mt-0 text-muted">
+                <small class="text-muted"><%= Date.parse(category.created_at.to_s).strftime('%a, %b %Y') %></small>
+                <% if can? :manage, category %>
+                    <%= link_to edit_category_path(id: category.id), class:"btn text-info" do %>
+                        <span><i class="fa fa-edit"></i>
+                    <% end %>
+                    <%= button_to category_path(id: category.id), method: :delete, class:"btn text-danger" do %>
+                        <span><i class="fa fa-trash"></i>
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

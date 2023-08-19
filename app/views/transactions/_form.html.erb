@@ -1,0 +1,20 @@
+<%= form_with(model: @transaction, url: submit_path, method: method, class: 'd-flex flex-column w-100') do |f| %>
+  <div class="d-flex align-items-center justify-content-between bg-primary px-3 py-2 text-white">
+    <div><%= link_to backpath, class: "text-white" do %> <i class="fa fa-arrow-left" aria-hidden="true"> <% end %></i></div><h4>New Transaction</h4><div><%= f.submit "Next", class: 'btn text-right px-0 text-white' %></div>
+  </div>
+  <% if @transaction.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
+
+      <ul>
+        <% @transaction.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.text_field :name, autofocus: true, autocomplete: 'new-transaction', placeholder: 'Ex: Electricity', skip_label: true, class: 'mt-2 border-right-0 border-top-0 border-left-0 border-bottom form-control shadow-none' %>
+  <%= f.number_field :amount, autofocus: true, autocomplete: 'new-icon-url', placeholder: 'Ex: 250', skip_label: true, class: 'mt-2 border-right-0 border-top-0 border-left-0 border-bottom form-control shadow-none' %>
+  <%= f.select(:category_id, options_for_select(@categories.collect { |u| ["#{u.name}", u.id]}), {}, {class: "form-control"}) %>
+  <%= f.submit "Submit", class: 'btn px-3 bg-success py-3 mt-auto position-fixed text-center text-white add-edit-button' %>
+<% end %>

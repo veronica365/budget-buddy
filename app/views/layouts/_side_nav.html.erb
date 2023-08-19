@@ -1,0 +1,11 @@
+<div id="mySidenav" class="sidenav-wrapper">
+  <div class="sidenav position-relative d-flex flex-column justify-content-between">
+  <div class="d-flex align-items-center">
+    <a href="#">Budget Buddy</a>
+    <a href="javascript:void(0)" class="closebtn pl-2" onclick="closeNav()">&times;</a>
+  </div>
+    <a>
+      <%= button_to "Logout", destroy_user_session_path, method: :delete, class: 'btn pl-0 text-white' %>
+    </a>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="mx-n3">
+    <div class="d-flex text-center bg-primary px-3 py-2 text-white">        
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+        <h4 class="w-100">Categories</h4>
+        <%= link_to "Add", new_category_path, class:"d-flex align-items-center ml-auto text-white" %>
+    </div>
+    <% if @categories.length.zero? %>
+        <div class="text-center py-3">There are no current categories</div>
+    <% end %>
+    <% unless @categories.nil? %>
+        <div class="px-3 mt-3 mb-5 pb-5">
+            <ul class="list-group">
+                <% @categories.each do |cat| %>
+                    <li class="list-group-item px-3 mb-3 border-0">
+                        <%= render 'shared/category/category_item', category: cat %>
+                    </li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+    <%= render 'shared/buttons/add_edit', submit_path: new_category_path, method: :get, button_text: 'ADD' %>
+</div>
